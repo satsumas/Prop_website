@@ -1,0 +1,8 @@
+Endpoint: http://hodesdon.com/prop/api/v1.0/
+
+Methods:
+POST : sends an argument. returns 'valid' or 'invalid'.
+
+An argument has:
+    * 'premises': list of strings, may be empty
+    * 'conclusion': string.

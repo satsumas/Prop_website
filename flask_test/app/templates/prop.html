@@ -1,0 +1,54 @@
+{% block content %}
+    
+<!------------------MathQuill--------------------------->
+
+<link rel= "stylesheet" type="text/css" href="/static/mathquill-0.10.1/mathquill.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/static/mathquill-0.10.1/mathquill.js"></script>
+<script>
+var MQ = MathQuill.getInterface(2);
+</script>
+
+<!----------dynamic Mathquill------->
+<p><span id="premiseform">
+<form action="" method="post" name="premiseform">
+    <div>{{ form.premise.label }}: {{ form.premise(class="css_class") }}</div>
+    <div>{{ form.conclusion.label }}: {{ form.conclusion() }}</div>
+</form>
+</span>
+
+
+<script>
+  var answerSpan = document.getElementById('premiseform');
+  var answerMathField = MQ.MathField(answerSpan, {
+    handlers: {
+      edit: function() {
+        var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+        checkAnswer(enteredMath);
+      }
+    }
+  });
+</script>
+
+
+
+
+
+
+
+<p><span id="first_prem">First premise: </span></p>
+
+<script>
+  var answerSpan = document.getElementById('first_prem');
+  var answerMathField = MQ.MathField(answerSpan, {
+    handlers: {
+      edit: function() {
+        var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+        checkAnswer(enteredMath);
+      }
+    }
+  });
+</script>
+
+{% endblock %}
+
