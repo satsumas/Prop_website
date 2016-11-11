@@ -9,6 +9,7 @@ RUN apt-get update -y && \
 RUN apt-get install -y wget build-essential zlib1g-dev libncurses5-dev
 RUN git clone https://github.com/satsumas/prop.git /usr/src/prop
 WORKDIR /usr/src/prop
-RUN pip install -r requirements.txt
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 ENTRYPOINT ["python"]
 CMD ["prop_yacc.py"]
