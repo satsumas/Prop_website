@@ -1,9 +1,14 @@
 FROM ubuntu:latest
+
 MAINTAINER Kate Hodesdon "kate@hodesdon.com"
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
-COPY . /app
-WORKDIR /app
+
+RUN apt-get update -y && \
+    apt-get install -y \ 
+    python-pip python-dev build-essential \
+    wget git-core
+RUN apt-get install -y wget build-essential zlib1g-dev libncurses5-dev
+RUN git clone https://github.com/satsumas/prop.git /usr/src/prop
+WORKDIR /usr/src/prop
 RUN pip install -r requirements.txt
 ENTRYPOINT ["python"]
-CMD ["app.py"]
+CMD ["prop_yacc.py"]
